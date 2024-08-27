@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "dev": "npx tailwindcss -i ./assets/styles/input.css -o ./assets/styles/app.css --watch",
+        "build": "npx tailwindcss -i ./assets/styles/input.css -o ./assets/styles/app.css --minify"
+    }
+}

@@ -1,0 +1,450 @@
+<!-- 
+web design by @z3ntl3 aka Efdal
+z3ntl3.com
+-->
+<!doctype html>
+<html data-theme="modern">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- styles -->
+    <link href="./assets/styles/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@animxyz/core">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- end styles -->
+
+    <!-- scripts -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- end scripts -->
+
+    <style>
+        #navbar {
+            --xyz-translate-default: 90%
+        }
+    </style>
+
+</head>
+<body>
+    <div id="navbar"  x-data="{closed: false}" class="fixed bg-base-200 h-full w-[65px] md:w-[80px] xyz-in z-50" :class="{'xyz-in': !closed , 'xyz-out': closed}" xyz="left ease out duration-8">
+        <div class="hidden md:block absolute -right-3 top-20" @click="closed = !closed">
+            <div class="bg-base-200 w-[30px] h-[30px] rounded-full flex justify-center items-center">
+                <svg class="ml-[5px] rotate-180" :class="{'rotate-0': closed, 'rotate-180': !closed}" width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L6 5L1 9" stroke="#F0F3F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+                
+        </div>
+
+        <div class="flex w-full justify-center">
+            <div class="bg-[#4779CC] rounded-full p-4 w-fit mt-[25px]">
+                <img class="" src="/assets/svg/logo.svg" alt="logo" width="10">
+            </div>
+        </div>
+
+        <div x-data="{page: 'home'}" class="flex flex-col justify-center items-center mt-[60px] text-[18px] gap-y-10">
+            <!-- home icon -->
+            <a href="#">
+                <i class="fa-solid fa-house text-white" :class="{'text-opacity-100': page === 'home', 'text-opacity-30': page !== 'home'}"></i>
+            </a>
+            <!-- end home  -->
+
+            <!-- analytics icon -->
+            <a href="#">
+                <i class="fa-solid fa-chart-bar text-white text-opacity-30 hover:text-opacity-60" :class="{'text-opacity-100': page === 'analytics', 'text-opacity-30': page !== 'analytics'}"></i>
+            </a>
+            <!-- end analytics icon -->
+
+            <!-- users icon -->
+            <a href="#">
+                <i class="fa-solid fa-users text-white  text-opacity-30 hover:text-opacity-60" :class="{'text-opacity-100': page === 'users', 'text-opacity-30': page !== 'users'}"></i>
+            </a>
+            <!-- end users icon -->
+
+            <!-- lightning icon -->
+            <a href="#">
+                <i class="fa-solid fa-bolt-lightning text-white text-opacity-30 hover:text-opacity-60" :class="{'text-opacity-100': page === 'spped', 'text-opacity-30': page !== 'speed'}"></i>
+            </a>
+            <!-- end lightning -->
+
+            <!-- settings -->
+            <a href="#">
+                <i class="fa-solid fa-gear text-white text-opacity-30 hover:text-opacity-60" :class="{'text-opacity-100': page === 'settings', 'text-opacity-30': page !== 'settings'}"></i>
+            </a>
+            <!--end settings  -->
+        </div>
+    </div>
+    
+    <!-- main content -->
+    <div class="w-full h-full">
+        <div class="ml-24 md:ml-32">
+            <!-- header -->
+            <div class="flex w-full">
+                <h1 class="font-bold text-[20px] mt-[20px]">Dashboard</h1>  
+
+                <div class="hidden md:flex w-full justify-end items-center mr-5 gap-x-5 mt-2">
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#8E919F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17.5 17.5L13.875 13.875" stroke="#8E919F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.5 12.5C17.5 12.942 17.3244 13.366 17.0118 13.6785C16.6993 13.9911 16.2754 14.1667 15.8333 14.1667H5.83333L2.5 17.5V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H15.8333C16.2754 2.5 16.6993 2.67559 17.0118 2.98816C17.3244 3.30072 17.5 3.72464 17.5 4.16667V12.5Z" stroke="#8E919F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6.66669C15 5.3406 14.4732 4.06883 13.5355 3.13115C12.5979 2.19347 11.3261 1.66669 10 1.66669C8.67392 1.66669 7.40215 2.19347 6.46447 3.13115C5.52678 4.06883 5 5.3406 5 6.66669C5 12.5 2.5 14.1667 2.5 14.1667H17.5C17.5 14.1667 15 12.5 15 6.66669Z" stroke="#8E919F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.4417 17.5C11.2952 17.7526 11.0849 17.9622 10.8319 18.1079C10.5789 18.2537 10.292 18.3304 10 18.3304C9.70803 18.3304 9.42117 18.2537 9.16816 18.1079C8.91515 17.9622 8.70486 17.7526 8.55835 17.5" stroke="#8E919F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a  href="#" class=" text-gray-500 font-normal text-sm">
+                        Need help?
+                    </a>
+
+                    <div class="mx-5">
+                        <svg width="2" height="50" viewBox="0 0 2 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1V49" stroke="#C4C4C4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="font-bold text-[16px]">Car Service</h1>
+                    <div class="flex justify-center items-center mr-2">
+                        <div x-data="{on: true}" class="flex items-center jsutify-center w-fit h-fit border-2 rounded-md p-1 border-green-500" :class="{'border-green-500': on, 'border-red-500': !on}">
+                            <span class="text-xs text-green-600" x-effect="manipulate($data)" id="text" :class="{'text-green-600': on, 'text-red-600': !on}">Open</span>
+                            <script>
+                                const manipulate = ({on}) => {
+                                    if (!on){
+                                        document.getElementById("text").innerText = "Closed"
+                                        return
+                                    }
+                                    document.getElementById("text").innerText = "Open"
+                                }
+                            </script>
+                            <div class="relative ml-2 bg-green-400 rounded-full w-[30px] h-[15px] border border-green-500" :class="{'border-green-500': on, 'border-red-500': !on, 'bg-green-400': on, 'bg-red-400': !on}">
+                                <div  class="bg-white rounded-full absolute left-0 w-[14px] h-[14px]" xyz="right-100% ease-in" :class="{'xyz-in': !on, 'xyz-out': on}" @click="on = !on"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header -->
+
+            <!-- statics -->
+            <div class="grid grid-cols-1  md:grid-cols-4 justify-center mt-[50px] gap-y-5 gap-x-5 mr-4 mb-5">
+                <div class="col-span-1 md:col-span-4">
+                    <h2 class="text-gray-800 font-semibold text-[18px]">Live Activity</h2>
+                </div>
+
+                <!-- card -->
+                <div class="relative flex w-full flex-col md:w-[340px] h-[200px] bg-[#FFFFFF] p-2 shadow-sm">
+                    <div class="flex items-center mt-[15px] ml-5">
+                        <div class="bg-green-500 bg-opacity-30 p-2 rounded-md">
+                            <img src="assets/svg/user.svg" alt="user icon">
+                        </div>
+                        <h1 class="ml-2 font-semibold">Product Requests</h1>
+                    </div>
+
+                    <!-- bottom graph -->
+                    <div class="flex grow justify-start items-end mb-2 ml-2">
+                        <div class="absolute bottom-0">
+                            <!-- percentage indicator -->
+                            <div class="absolute bottom-4">
+                                <div class="flex items-center gap-x-2">
+                                  <svg width="10" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5 0L9.33013 7.5H0.669873L5 0Z" fill="#0DA06A"/>
+                                  </svg>
+                                  <span class="text-[sm] text-[#0DA06A]">10%</span>
+                                </div>
+                            </div>
+                            <!-- end percentage indicator -->
+
+                             <!-- graph -->
+                            <div class="w-[140px] md:w-[200px] h-[120px] bottom-10 ml-10" id="stat-1"></div>
+                            <!-- end graph -->
+                        </div>
+                        
+
+                        <div class="flex h-full w-full justify-end mr-5 items-end mb-5">
+                            <h1 class="text-gray-500 text-[35px] font-semibold">10</h1>
+                        </div>
+                    </div>
+                    <!-- end bottom graph -->
+                </div>
+                <!-- end card -->
+
+                <!-- card -->
+                <div class="relative flex w-full flex-col md:w-[340px] h-[200px] bg-[#FFFFFF] p-2 shadow-sm">
+                    <div class="flex items-center mt-[15px] ml-5">
+                        <div class="bg-[#874CD1] bg-opacity-30 p-2 rounded-md">
+                            <img src="assets/svg/service.svg" alt="user icon">
+                        </div>
+                        <h1 class="ml-2 font-semibold">Service Requests</h1>
+                    </div>
+
+                    <!-- bottom graph -->
+                    <div class="flex grow justify-start items-end mb-2 ml-2">
+                        <div class="absolute bottom-0">
+                            <!-- percentage indicator -->
+                            <div class="absolute bottom-4">
+                                <div class="flex items-center gap-x-2">
+                                  <svg class="fill-[#F34A7C] rotate-180" width="10" height="20" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5 0L9.33013 7.5H0.669873L5 0Z" />
+                                  </svg>
+                                  <span class="text-[sm] text-[#F34A7C]">20%</span>
+                                </div>
+                            </div>
+                            <!-- end percentage indicator -->
+
+                             <!-- graph -->
+                            <div class="w-[140px] md:w-[200px] h-[120px] bottom-10 ml-10" id="stat-2"></div>
+                            <!-- end graph -->
+                        </div>
+                        
+
+                        <div class="flex h-full w-full justify-end mr-5 items-end mb-5">
+                            <h1 class="text-gray-500 text-[35px] font-semibold">2</h1>
+                        </div>
+                    </div>
+                    <!-- end bottom graph -->
+                </div>
+                <!-- end card -->
+
+                <!-- card -->
+                <div class="relative flex w-full flex-col md:w-[340px] h-[200px] bg-[#FFFFFF] p-2 shadow-sm">
+                    <div class="flex items-center mt-[15px] ml-5">
+                        <div class="bg-[#FB7E15] bg-opacity-30 p-2 rounded-md">
+                            <img src="assets/svg/emer.svg" alt="user icon">
+                        </div>
+                        <h1 class="ml-2 font-semibold">Emergency Requests</h1>
+                    </div>
+
+                    <!-- bottom graph -->
+                    <div class="flex grow justify-start items-end mb-2 ml-2">
+                        <div class="absolute bottom-0">
+                            <!-- percentage indicator -->
+                            <div class="absolute bottom-4">
+                                <div class="flex items-center gap-x-2">
+                                  <svg class="fill-[#0DA06A]" width="10" height="20" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5 0L9.33013 7.5H0.669873L5 0Z" />
+                                  </svg>
+                                  <span class="text-[sm] text-[#0DA06A]">10%</span>
+                                </div>
+                            </div>
+                            <!-- end percentage indicator -->
+
+                             <!-- graph -->
+                            <div class="w-[140px] md:w-[200px] h-[120px] bottom-10 ml-10" id="stat-3"></div>
+                            <!-- end graph -->
+                        </div>
+                        
+
+                        <div class="flex h-full w-full justify-end mr-5 items-end mb-5">
+                            <h1 class="text-gray-500 text-[35px] font-semibold">10</h1>
+                        </div>
+                    </div>
+                    <!-- end bottom graph -->
+                </div>
+                <!-- end card -->
+
+                <!-- card -->
+                <div class="relative flex w-full flex-col md:w-[340px] h-[200px] bg-[#FFFFFF] p-2 shadow-sm">
+                    <div class="flex items-center mt-[15px] ml-5">
+                        <div class="bg-[#4779CC] bg-opacity-30 p-2 rounded-md">
+                            <img src="assets/svg/trans.svg" alt="user icon">
+                        </div>
+                        <h1 class="ml-2 font-semibold">Transactions</h1>
+                    </div>
+
+                    <!-- bottom graph -->
+                    <div class="flex grow justify-start items-end mb-2 ml-2">
+                        <div class="absolute bottom-0">
+                            <!-- percentage indicator -->
+                            <div class="absolute bottom-4">
+                                <div class="flex items-center gap-x-2">
+                                  <svg class="fill-[#0DA06A]" width="10" height="20" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5 0L9.33013 7.5H0.669873L5 0Z" />
+                                  </svg>
+                                  <span class="text-[sm] text-[#0DA06A]">25%</span>
+                                </div>
+                            </div>
+                            <!-- end percentage indicator -->
+
+                             <!-- graph -->
+                            <div class="w-[140px] md:w-[200px] h-[120px] bottom-10 ml-10" id="stat-4"></div>
+                            <!-- end graph -->
+                        </div>
+                        
+
+                        <div class="flex h-full w-full justify-end mr-5 items-end mb-5">
+                            <h1 class="text-gray-500 text-[35px] font-semibold">30</h1>
+                        </div>
+                    </div>
+                    <!-- end bottom graph -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end statics -->
+        </div>
+    </div>
+    <!-- end main content -->
+
+    <script>
+        var options = [
+            {
+                stat: "stat-1",
+                chart: {
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    },
+                    height: "100%"
+                },
+                series: [{
+                    name: 'sales',
+                    data: [0,5,10, 5,20]
+                }],
+                xaxis: {
+                    labels: {show: false},
+                    axisTicks: {show:false},
+                    axisBorder: {show:false}
+                },
+                yaxis: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: {
+                    enabled: false
+                },
+                dataLabels: {enabled:false},
+                colors: ["#0DA06A"],
+                stroke: {
+                    curve: 'smooth',
+                }
+            },
+            {
+                stat: "stat-2",
+                chart: {
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    },
+                    height: "100%"
+                },
+                series: [{
+                    name: 'sales',
+                    data: [10,5,10, 0]
+                }],
+                xaxis: {
+                    labels: {show: false},
+                    axisTicks: {show:false},
+                    axisBorder: {show:false}
+                },
+                yaxis: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: {
+                    enabled: false
+                },
+                dataLabels: {enabled:false},
+                colors: ["#F34A7C"],
+                stroke: {
+                    curve: 'smooth',
+                }
+            },
+            {
+                stat: "stat-3",
+                chart: {
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    },
+                    height: "100%"
+                },
+                series: [{
+                    name: 'sales',
+                    data: [0,10, 20, 40]
+                }],
+                xaxis: {
+                    labels: {show: false},
+                    axisTicks: {show:false},
+                    axisBorder: {show:false}
+                },
+                yaxis: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: {
+                    enabled: false
+                },
+                dataLabels: {enabled:false},
+                colors: ["#0DA06A"],
+                stroke: {
+                    curve: 'smooth',
+                }
+            }, {
+                stat: "stat-4",
+                chart: {
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    },
+                    height: "100%"
+                },
+                series: [{
+                    name: 'sales',
+                    data: [40,30,20,80]
+                }],
+                xaxis: {
+                    labels: {show: false},
+                    axisTicks: {show:false},
+                    axisBorder: {show:false}
+                },
+                yaxis: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: {
+                    enabled: false
+                },
+                dataLabels: {enabled:false},
+                colors: ["#0DA06A"],
+                stroke: {
+                    curve: 'smooth',
+                }
+            }
+        ]
+
+        options.forEach((opt) => {
+            (new ApexCharts(document.querySelector(`#${opt.stat}`), opt)).render()
+        })
+    </script>
+</body>
+</html>

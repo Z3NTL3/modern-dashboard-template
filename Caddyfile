@@ -1,0 +1,4 @@
+:2000 {
+	root {$DASHBOARD_DESIGN_ROOT_PATH}
+	file_server
+}
